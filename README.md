@@ -1,8 +1,8 @@
 # CS3249-2020-React-Tutorial
 
-## To directly use the files in this project
+## Starting Exercise
 
-1. (Download)[https://github.com/janakanuwan/CS3249-2020-React-Exercise] or clone
+1. [Download](https://github.com/janakanuwan/CS3249-2020-React-Exercise) or clone
 ```bash
 git clone https://github.com/janakanuwan/CS3249-2020-React-Exercise.git
 ```
@@ -27,6 +27,7 @@ npm start
 ## Part 1: Creating the UI with based on view tree
 
 We want to change the UI as follows:
+
 ![Web Page](./part-1/super_heroes.png) 
 
 Data Source: [SuperHero API](https://superheroapi.com/)
@@ -40,10 +41,10 @@ Data Source: [SuperHero API](https://superheroapi.com/)
 
 1. Create view components using React.
 
-**EXERCISE: add the power list**
+**EXERCISE**: Add the power list
 
 >- What is `props`?
->- How the variables are accessed in (JSX)[https://devhints.io/react#jsx-patterns]?  [NOTE: curly brackets]
+>- How the variables are accessed in [JSX](https://devhints.io/react#jsx-patterns)?  [NOTE: curly brackets]
 
 
 ```javascript
@@ -103,7 +104,7 @@ export default PowerStatsView;
 }
 ```
 
-**EXERCISE: import the PowerStatsView and add it to HeroView**
+**EXERCISE**: Import the PowerStatsView and add it to HeroView
 
 ```javascript
 // src/view/HeroView.jsx
@@ -263,7 +264,7 @@ const parseHeroData =(dataArray = []) =>  dataArray.map( (dataItem) =>
 const filteredHeroesByPublisher = (publisher, heroDataArray) =>
     heroDataArray.filter(hero => publisher === hero.publisher);
 
-// App component: in functional format instead of extending from React.Component
+// App Component in functional format instead of extending from React.Component
 function App() {
     // initialize
     const data = parseHeroData(rawData);
@@ -284,10 +285,11 @@ export default App;
 
 ## Part 2: Adding interactions
 
-We want to change the UI as follows:
+We want to change the UI as follows [NOTE: Now 'Powers' are shown in a bar chart!]:
+
 ![Web Page](./part-2/new_hero.png)
 
-NOTE: Now 'Powers' are shown in a bar chart.
+
 
 ### Steps
 
@@ -305,6 +307,7 @@ npm i -S recharts
 >- Why is it added as (production) dependency?
 
 3. Add a [barchart](http://recharts.org/en-US/examples/SimpleBarChart) to `src/view/PowerStatsChart.jsx`
+    - Note how the BarChart component was imported and used!
 ```javascript
 // src/view/PowerStatsChart.jsx
 import React from 'react'
@@ -346,7 +349,7 @@ export default PowerStatsChart;
 
 4. Modify the `PowerStatsView.jsx` as follows.
 
-**EXERCISE: Add the 'PowerStatsChart'**
+**EXERCISE**: Add the 'PowerStatsChart'
 
 ```javascript
 // src/view/PowerStatsChart.jsx
@@ -413,7 +416,7 @@ class HeroView extends React.Component{
 
 6. Let's handle events to change the chart values
 
-**EXERCISE: Add "increaseStrength()" and "increaseStrength()" functions**
+**EXERCISE**: Add 'increaseStrength()' and 'increaseStrength()' functions
 
 ```javascript
 // src/view/HeroView.jsx
@@ -466,7 +469,7 @@ class HeroView extends React.Component{
     - What are the difference between _state_ abd _props_?
     
 
-**EXERCISE: Add _state_ using _this.state_ inside constructor function**
+**EXERCISE*: Add _state_ using _this.state_ inside constructor function
 
 ```javascript
 // src/view/HeroView.jsx
@@ -543,6 +546,6 @@ class HeroView extends React.Component{
 
 ```
 
-9. How do we move the `state` to support MV* patterns?
+9. [Optional] How do we move the `state` to support MV* patterns?
 	- Pass the functions with `props`
 	- See [Lifting State Up](https://reactjs.org/docs/lifting-state-up.html)
