@@ -35,7 +35,7 @@ function App() {
 
     return (
         <div>
-            {/* use the JS functions directly inside the JSX syntax! */}
+            {/* EXERCISE: Add the PublisherView list  */}
             {publishers.map( (publisher) => <PublisherView heroes={filteredHeroesByPublisher(publisher, data)} />)}
         </div>
     );

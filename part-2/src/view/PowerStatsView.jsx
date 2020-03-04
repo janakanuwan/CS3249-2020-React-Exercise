@@ -2,7 +2,7 @@ import React from 'react'
 import PowerStatsChart from "./PowerStatsChart";
 
 class PowerStatsView extends React.Component {
-    // static utility function
+    // static utility function that maps the data parsed from props to Chart supported format
     static graphDataMapper(data){
         const {intelligence, strength, speed} = data;
         return (
@@ -18,7 +18,11 @@ class PowerStatsView extends React.Component {
         const {data} = this.props;
 
         return (
-            <PowerStatsChart data={PowerStatsView.graphDataMapper(data)}/>
+            <div>
+                {/* EXERCISE: Add the 'PowerStatsChart'*/}
+
+
+            </div>
         );
     }
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 
-// NOTE: We did not added the extension. Will it be a problem?
-// React Component
-import PowerStatsView from './PowerStatsView'
+// importing React Component
+
+// EXERCISE: import the PowerStatsView and add it
+// NOTE: Do we need to add ".jsx" extension?
+
 
 // import css
 import './hero-view.css'
@@ -15,16 +17,20 @@ class HeroView extends React.Component{
         const {hero} = this.props;
 
         return (
-            // pass css property 'class-name'
-            <div className={"hero-view"}>
+            // EXERCISE: pass css property 'class-name' = "hero-view"
+            <div >
                 <h3>{hero.name}</h3>
                 <img src={hero.image}  alt={hero.image}/>
                 {/* NOTE: we can use the child component directly in JSX */}
                 {/* NOTE: we pass the data by a known name (i.e. 'data') */}
-                <PowerStatsView data={hero.powerstats}/>
+
+                {/*EXERCISE: Add the PowerStatsView here and pass the 'powerstats' from 'hero' */}
+
+
+
             </div>
         );
     }
 }
 
-export default HeroView
+export default HeroView;

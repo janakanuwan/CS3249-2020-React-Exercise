@@ -2,9 +2,9 @@
 
 ## To directly use the files in this project
 
-1. Download or clone
+1. (Download)[https://github.com/janakanuwan/CS3249-2020-React-Exercise] or clone
 ```bash
-git clone https://github.com/janakanuwan/CS3249-2020-React.git
+git clone https://github.com/janakanuwan/CS3249-2020-React-Exercise.git
 ```
 
 2. Go to the React root directory/folder (e.g. `part-1` or `part-2`)
@@ -38,26 +38,17 @@ Data Source: [SuperHero API](https://superheroapi.com/)
 
 ### Steps
 
-1. Create the react project (name: part-1) with `create-react-app`
-```bash
-npx create-react-app part-1
-```
+1. Create view components using React.
 
-2. Move to the new directory and start the project
-```bash
-cd part-1
-npm start
-```
-
-
-3. Create view components using React.
+**EXERCISE: add the power list**
 
 >- What is `props`?
 >- How the variables are accessed in (JSX)[https://devhints.io/react#jsx-patterns]?  [NOTE: curly brackets]
 
+
 ```javascript
 // src/view/PowerStatsView.jsx
-import React from 'react'
+import React from 'react';
 
 class PowerStatsView extends React.Component{
 
@@ -74,17 +65,20 @@ class PowerStatsView extends React.Component{
         return (
             <div>
                 <p>Powers: </p>
-                <ul> 
-                	{powerList} 
-                </ul>
                 {/* NOTE: JSX comments */}
+
+                {/* EXERCISE: add the power list */}
+
+                
+
+
             </div>
         );
     }
 }
 
 // NOTE: you need to 'export' the component to access it by other files (if all components are in a single file, you do not need to 'export')
-export default PowerStatsView
+export default PowerStatsView;
 ```
 >- What is meant by 'export'? Hint: [Modules](http://exploringjs.com/es6/ch_modules.html)
 
@@ -109,13 +103,17 @@ export default PowerStatsView
 }
 ```
 
+**EXERCISE: import the PowerStatsView and add it to HeroView**
+
 ```javascript
 // src/view/HeroView.jsx
 import React from 'react'
 
-// NOTE: We did not added the extension. Will it be a problem?
-// React Component
-import PowerStatsView from './PowerStatsView'
+// importing React Component
+
+// EXERCISE: import the PowerStatsView and add it
+// NOTE: Do we need to add ".jsx" extension?
+
 
 // import css
 import './hero-view.css'
@@ -128,19 +126,23 @@ class HeroView extends React.Component{
         const {hero} = this.props;
 
         return (
-            // pass css property 'class-name'
-            <div className={"hero-view"}>
+            // EXERCISE: pass css property 'class-name' = "hero-view"
+            <div >
                 <h3>{hero.name}</h3>
                 <img src={hero.image}  alt={hero.image}/>
                 {/* NOTE: we can use the child component directly in JSX */}
                 {/* NOTE: we pass the data by a known name (i.e. 'data') */}
-                <PowerStatsView data={hero.powerstats}/>
+
+                {/*EXERCISE: Add the PowerStatsView here and pass the 'powerstats' from 'hero' */}
+
+
+
             </div>
         );
     }
 }
 
-export default HeroView
+export default HeroView;
 ```
 
 ```css
@@ -157,12 +159,11 @@ export default HeroView
 
 ```javascript
 // src/model/HeroView.js
-import React from 'react'
+import React from 'react';
 
-// React Component
 import HeroView from './HeroView'
 
-import './hero-panel.css'
+import './publisher-view.css'
 
 class PublisherView extends React.Component{
 
@@ -175,24 +176,27 @@ class PublisherView extends React.Component{
 
         // What will happen if heroes array is empty?
         const publisher = heroes[0]["publisher"];
-        // Use JS map function to create multiple heroes with looping
-        // What is meant by 'key'?
-        const heroViews = heroes.map( (heroData) => <HeroView key={heroData.id} hero={heroData}/> );
 
         // NOTE: HTML uses simple names for its attributes, but JSX uses camel case!
         return (
             <div>
                 <h2>Super Heroes from {publisher} </h2>
-                <div className={"hero-panel"}> {heroViews} </div>
+                <div className={"publisher-view"}>
+                    {/* Use JS map function to create multiple heroes with looping*/}
+                    {heroes.map( (heroData) =>
+                        <HeroView key={heroData.id} hero={heroData}/>)}
+                </div>
             </div>
         );
     }
 }
 
-export default PublisherView
+export default PublisherView;
 ```
 
-4. Create the data classes using JS.
+2. Create the data classes using JS.
+
+>- NOTE: For the assigment 3, you may not need to separate them!
 
 ```javascript
 // src/model/PowerStats.model.js
@@ -211,6 +215,7 @@ export default PowerStats;
 ```javascript
 // src/model/Hero.model.js
 class Hero{
+    
     constructor(id, name, powerstats = {}, image = '', publisher = ''){
         this.id = id;
         this.name = name
@@ -224,7 +229,7 @@ export default Hero;
 ```
 
 
-4. Render the react components from `src/App.js`
+3. Render the react components from `src/App.js`
 
 >- We will use data from a file to initialize the page
 
@@ -273,7 +278,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 ---
@@ -287,27 +291,20 @@ NOTE: Now 'Powers' are shown in a bar chart.
 
 ### Steps
 
-1. Create the react project (name: part-2) with `create-react-app`
+1. Go to `part-2` directory and start the app
 ```bash
-npx create-react-app part-2
-```
-
-2. Move to the new directory and start the project
-```bash
-cd part-2
+npm install
 npm start
 ```
 
-3. Copy all the files in `part-1/src` to `src` directory (We will modify them!)
-
-4. Let's use '[Recharts](http://recharts.org/en-US/)'. Install '[recharts](https://github.com/recharts/recharts)' as a dependency
+2. Let's use '[Recharts](http://recharts.org/en-US/)'. Install '[recharts](https://github.com/recharts/recharts)' as a dependency
 ```bash
 npm i -S recharts
 # or 'npm install --save recharts'
 ```
 >- Why is it added as (production) dependency?
 
-5. Add a [barchart](http://recharts.org/en-US/examples/SimpleBarChart) to `src/view/PowerStatsChart.jsx`
+3. Add a [barchart](http://recharts.org/en-US/examples/SimpleBarChart) to `src/view/PowerStatsChart.jsx`
 ```javascript
 // src/view/PowerStatsChart.jsx
 import React from 'react'
@@ -347,33 +344,9 @@ class PowerStatsChart extends React.Component{
 export default PowerStatsChart;
 ```
 
-6. Modify the `PowerStatsView.jsx` as follows.
-```javascript
-// src/view/PowerStatsChart.jsx
-import React from 'react'
-import PowerStatsChart from "./PowerStatsChart";
+4. Modify the `PowerStatsView.jsx` as follows.
 
-class PowerStatsView extends React.Component {
-
-    render() {
-        const {data} = this.props;
-
-        // Dummy data
-        const data1 = [
-            {
-                name: 'Powers', intelligence: 40, strength: 50, speed: 60,
-            }
-        ];
-
-        return (
-            <PowerStatsChart data={data1}/>
-        );
-    }
-}
-
-export default PowerStatsView;
-```
->- How to convert data to Chart supporting data?
+**EXERCISE: Add the 'PowerStatsChart'**
 
 ```javascript
 // src/view/PowerStatsChart.jsx
@@ -381,7 +354,7 @@ import React from 'react'
 import PowerStatsChart from "./PowerStatsChart";
 
 class PowerStatsView extends React.Component {
-    // static utility function
+    // static utility function that maps the data parsed from props to Chart supported format
     static graphDataMapper(data){
         const {intelligence, strength, speed} = data;
         return (
@@ -397,7 +370,11 @@ class PowerStatsView extends React.Component {
         const {data} = this.props;
 
         return (
-            <PowerStatsChart data={PowerStatsView.graphDataMapper(data)}/>
+            <div>
+                {/* EXERCISE: Add the 'PowerStatsChart'*/}
+
+
+            </div>
         );
     }
 }
@@ -405,12 +382,12 @@ class PowerStatsView extends React.Component {
 export default PowerStatsView;
 ```
 
-
 >- What is the relationship between `<Bar dataKey='power1' />` and graph legends and values?
 >- What is the relationship between `<XAxis dataKey='name' />` and graph X-label?
 >- How to fix the legends to show 'intelligence', 'strength' and 'speed'?
 
-7. Let's add buttons to `src/view/HeroView.jsx`
+5. Let's add buttons to `src/view/HeroView.jsx`
+
 ```javascript
 // src/view/HeroView.jsx
 class HeroView extends React.Component{
@@ -434,7 +411,10 @@ class HeroView extends React.Component{
 }
 ```
 
-8. Let's handle events to change the chart values
+6. Let's handle events to change the chart values
+
+**EXERCISE: Add "increaseStrength()" and "increaseStrength()" functions**
+
 ```javascript
 // src/view/HeroView.jsx
 class HeroView extends React.Component{
@@ -449,7 +429,7 @@ class HeroView extends React.Component{
         this.decreaseStrength = this.decreaseStrength.bind(this);
     }
 
-    // fucntions to handle clicks
+    // functions to handle clicks
     increaseStrength(e) {
         // TODO
         console.log(e);
@@ -480,9 +460,13 @@ class HeroView extends React.Component{
 >- Why 'onClick' is in camel case instead of 'onclick' as in HTML button format?
 >- Why do you have to bind functions inside the constructor?
 
-9. Using local state to show values
+7. Using local state to show values
     - Where should we keep that state? How do we decide that? Hint: [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
     - Which data should we keep in the _state_?
+    - What are the difference between _state_ abd _props_?
+    
+
+**EXERCISE: Add _state_ using _this.state_ inside constructor function**
 
 ```javascript
 // src/view/HeroView.jsx
@@ -525,7 +509,7 @@ class HeroView extends React.Component{
 }
 ```
 
-10. Changing the state based on events
+8. Changing the state based on events
     - What is the expected behavior of the state when you click "Increase Strength" (or "Decrease Strength")?
     - How can we change the state? Hint: Use the inbuilt `this.setState()` to update the component's local state
     - IMPORTANT: Three things you should know about [setState()](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
@@ -559,6 +543,6 @@ class HeroView extends React.Component{
 
 ```
 
-11. How do we move the `state` to support MV* patterns?
+9. How do we move the `state` to support MV* patterns?
 	- Pass the functions with `props`
 	- See [Lifting State Up](https://reactjs.org/docs/lifting-state-up.html)
