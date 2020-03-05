@@ -453,8 +453,8 @@ class HeroView extends React.Component{
                 
                 <button onClick={this.increaseStrength}>Increase Strength</button>
                 <button onClick={this.decreaseStrength}>Decrease Strength</button>
-                {/* NOTE: Now we use 'state' instead of 'props' */}
-                <PowerStatsView data={this.state}/>
+               
+                <PowerStatsView data={hero.powerstats}/>
             </div>
         );
     }
